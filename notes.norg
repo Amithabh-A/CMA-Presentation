@@ -1,0 +1,25 @@
+* Some math notations 
+** First order divided difference of f(x)
+  f[x_0, x_1] = (f(x_1) - f(x_0)/(x_1 - x_0)
+   x0,x1 are distinct
+** Second order divided difference of f(x)
+   f[x_0, x_1, x_2] = (f[x_1, x_2] - f[x_0, x_1])/(x_2 - x_0)
+
+* Muller's method
+  real and complex roots
+
+  1. Given 3 points x0,x1,x2
+  2. A quadratic polynomial (polynomial of degree 2) is constructed that passes through three points (x,f(x))
+  3. One of the roots of this polynomial is used as an improved estimate for a root α of f(x). 
+
+  The quadratic polynomial is given by
+  p(x) = f(x_{2}) + (x-x_{2}) f[x_2, x_1] + (x-x_{2})(x-x_{1}) f[x_2, x_1, x_0]
+
+  To find zeros, we rewrite f(x) in more convenient way. 
+
+  y = f(x_2) + w(x - x_2) + f[x_2, x_1, x_0](x - x_2)^2 
+  where 
+  w = f[x_2, x_1] + (x_2 - x_1)f[x_2, x_1, x_0]
+  w = f[x_2, x_1] + f[x_2, x_0] - f[x_0, x_1]
+
+  we wanted to find smallest value of (x - x_2) that satisfies eqn y = 0
