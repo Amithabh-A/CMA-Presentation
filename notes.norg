@@ -23,3 +23,5 @@
   w = f[x_2, x_1] + f[x_2, x_0] - f[x_0, x_1]
 
   we wanted to find smallest value of (x - x_2) that satisfies eqn y = 0
+
+  
