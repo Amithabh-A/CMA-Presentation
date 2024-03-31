@@ -7,10 +7,10 @@
 ############################
 import cmath
 def f(x):
-	return x**3 - x**2 - x - 1	
-xnm2 = 0
-xnm1 = 1
-xn = 2
+	return x**3 - x**4 - 1	
+xnm2 = -0.5
+xnm1 = -0.6
+xn = -0.55
 #xnm2 = -2
 #xnm1 = -1
 #xn = 0

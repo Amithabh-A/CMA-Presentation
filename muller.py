@@ -2,7 +2,8 @@ from Polynomial import Polynomial
 import cmath
 
 def f(x):
-    p = Polynomial([-1, -4, 0, 1])
+#    p = Polynomial([-1, -4, 0, 1])
+    p= Polynomial([-1, -1, -1, 1])
     return p(x)
 
 def calculate_next_x(xnm2, xnm1, xn):
@@ -14,6 +15,7 @@ def calculate_next_x(xnm2, xnm1, xn):
     return xn - (xn - xnm1) * ((2 * c) / (b + cmath.sqrt(b**2 - 4 * a * c)))
 
 def print_iteration(i, x, fx):
+    # i is the iteration number. 
     if x.imag == 0j:
         x = x.real
         print(str(i) + "\t" + str(round(x, 5)) + "\t\t" + str(round(f(x), 5)))
@@ -21,9 +23,9 @@ def print_iteration(i, x, fx):
         print(str(i) + "\t{:.4f}".format(x) + "\t{:.4f}".format(f(x)))
 
 def find_root():
-    xnm2 = 10
-    xnm1 = 9
-    xn = 8
+    xnm2 = 2
+    xnm1 = 1
+    xn = 0
     epsilon = 10**-7
     i = 0
     print("n \t xn\t\tf(xn)")
