@@ -118,9 +118,9 @@ class Polynomial(RowVectorFloat):
             s += "(x^" + str(i) + ")"
         return s
 
-    def show(self, a = 0, b = 1):
+    def show(self, a = -10, b = 10, filename="plot.jpg"):
         """
-        Plot the polynomial in the given intervel
+        Plot the polynomial in the given interval and save it as a jpg file
         """    
         numpts = 100
 
@@ -133,7 +133,8 @@ class Polynomial(RowVectorFloat):
         plt.xlabel("x")
         plt.ylabel("P(x)")
         plt.grid()
-        plt.show()
+        plt.savefig(filename)
+        open_jpg(filename)
 
     def fitViaMatrixMethod(self, l, showPlot = True):
         """
@@ -309,5 +310,15 @@ def aberth_method(P : Polynomial, ɛ, Z):
             Z[i] -= t/(1 - t*memo[i])
 
     return Z
+
+def open_jpg(file_path):
+    from PIL import Image
+    try:
+        with Image.open(file_path) as img:
+            img.show()
+    except FileNotFoundError:
+        print("File not found.")
+    except Exception as e:
+        print(f"An error occurred: {e}")
 
 Polynomial.printRoots = lambda self,Z0: aberth_method(self, 10e-3, Z0)
