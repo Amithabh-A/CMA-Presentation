@@ -7,10 +7,10 @@ class NewtonRaphson:
         self.f = Polynomial(coefficients)
 
     def f_prime(self, x):
-        f = self.derivative()  # Updated line
+        f = self.derivative()  
         return f(x)
     
-    def derivative(self):  # Updated method definition
+    def derivative(self):
         """
         Function to calculate the derivative of a polynomial
         """
@@ -29,16 +29,16 @@ class NewtonRaphson:
         return x - self.f(x) / self.f_prime(x)
 
     def newton_raphson(self, x0, epsilon):
-        errors = []  # List to store errors
+        errors = []  
         print("n \t xn\tf(xn)")
         print("1 \t " + str(x0) + "\t" + str(self.f(x0)))
         i = 1
         while abs(self.f(x0)) > epsilon:
-            errors.append(abs(self.f(x0)))  # Append error at each iteration
+            errors.append(abs(self.f(x0)))
             x0 = self.next_x(x0)
             i += 1
             self.print_iteration(i, x0, self.f(x0))
-        return x0, errors  # Return the final result and the list of errors encountered during the iterations
+        return x0, errors  
 
 
 
@@ -50,6 +50,6 @@ if __name__ == '__main__':
     x0 = float(input("Enter x0: "))
     epsilon = 10**-7#float(input("Enter epsilon: "))
 
-    nr = NewtonRaphson(l)  # Create an instance of NewtonRaphson class
-    result, _ = nr.newton_raphson(x0, epsilon)  # Call the newton_raphson method on the instance
+    nr = NewtonRaphson(l)
+    result, _ = nr.newton_raphson(x0, epsilon)  
     print(result)
