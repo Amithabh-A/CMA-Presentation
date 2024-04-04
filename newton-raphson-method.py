@@ -2,17 +2,45 @@
 from Polynomial import Polynomial
 import math
 
-def f_prime(f, x):
-    return derivative(f)(x)
+class NewtonRaphson:
+    def __init__(self, coefficients):
+        self.f = Polynomial(coefficients)
 
-def next_x(f, x):
-    return x - f(x) / f_prime(f, x)
+    def f_prime(self, x):
+        f = self.derivative()  # Updated line
+        return f(x)
+    
+    def derivative(self):  # Updated method definition
+        """
+        Function to calculate the derivative of a polynomial
+        """
+        newP = []
+        for i,c in enumerate(self.f.list):
+            if i!=0:
+                newP.append(i*c)
+        
+        return Polynomial(newP)
 
 
-def newton_raphson(f, x0, epsilon):
-    while abs(f(x0)) > epsilon:
-        x0 = next_x(f, x0)
-    return x0
+    def print_iteration(self, i, x, fx):
+        print(str(i) + "\t{:.4f}".format(x) + "\t{:.4f}".format(self.f(x)))
+    
+    def next_x(self, x):
+        return x - self.f(x) / self.f_prime(x)
+
+    def newton_raphson(self, x0, epsilon):
+        errors = []  # List to store errors
+        print("n \t xn\tf(xn)")
+        print("1 \t " + str(x0) + "\t" + str(self.f(x0)))
+        i = 1
+        while abs(self.f(x0)) > epsilon:
+            errors.append(abs(self.f(x0)))  # Append error at each iteration
+            x0 = self.next_x(x0)
+            i += 1
+            self.print_iteration(i, x0, self.f(x0))
+        return x0, errors  # Return the final result and the list of errors encountered during the iterations
+
+
 
 if __name__ == '__main__':
     l = [float(x) for x in input("Enter elements separated by space: ").split()]
@@ -22,6 +50,6 @@ if __name__ == '__main__':
     x0 = float(input("Enter x0: "))
     epsilon = 10**-7#float(input("Enter epsilon: "))
 
-    print(newton_raphson(f, x0, epsilon))
-
-
+    nr = NewtonRaphson(l)  # Create an instance of NewtonRaphson class
+    result, _ = nr.newton_raphson(x0, epsilon)  # Call the newton_raphson method on the instance
+    print(result)
